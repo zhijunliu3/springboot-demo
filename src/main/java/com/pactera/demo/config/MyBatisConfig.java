@@ -13,12 +13,6 @@ import org.springframework.context.annotation.Configuration;
 public class MyBatisConfig {
     @Bean
     public ConfigurationCustomizer configurationCustomizer(){
-        return new ConfigurationCustomizer(){
-            @Override
-            public void customize(org.apache.ibatis.session.Configuration configuration) {
-                // 设置驼峰命名
-                configuration.setMapUnderscoreToCamelCase(true);
-            }
-        };
+        return configuration -> configuration.setMapUnderscoreToCamelCase(true);
     }
 }

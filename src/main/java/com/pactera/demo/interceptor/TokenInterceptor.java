@@ -2,6 +2,7 @@ package com.pactera.demo.interceptor;
 
 import com.pactera.demo.common.exception.FASErrorCodeEnum;
 import com.pactera.demo.common.exception.FASException;
+import com.pactera.demo.context.UserContextHolder;
 import com.pactera.demo.user.entity.UserDO;
 import com.pactera.demo.user.mapper.TokenMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             if(null == user){
                 throw new FASException(FASErrorCodeEnum.ERROR_90001);
             }else{
+                UserContextHolder.holder.set(user);
 //                valueOperations.set(token, JSON.toJSONString(user), 2, TimeUnit.HOURS);
             }
         }
